@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:3000/users';
+const apiUrl = 'http://0.0.0.0:3000/users';
 
 async function fetchUsers() {
     try {
