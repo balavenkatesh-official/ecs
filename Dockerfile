@@ -16,10 +16,10 @@ RUN npm install dotenv
 COPY . .
 
 # Copy index.html from the parent directory to the app directory
-COPY public/index.html /usr/src/app/
+#COPY public/index.html /usr/src/app/
 #COPY public/style.css /usr/src/app
-COPY public/crud.js /usr/src/app
-COPY public/.env /usr/src/app
+#COPY public/crud.js /usr/src/app
+#COPY public/.env /usr/src/app
 
 # Expose the port the app runs on
 EXPOSE 3000
