@@ -1,28 +1,9 @@
-# Use the official Node.js image as the base image
-FROM public.ecr.aws/docker/library/node:14.15.4
+# Use an official nginx image
+FROM public.ecr.aws/docker/library/nginx:stable-alpine
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+# Copy the build output to replace the default nginx contents.
+COPY . /usr/share/nginx/html
 
-# Copy package.json and package-lock.json files
-COPY package*.json ./
+# Expose port 80
+EXPOSE 80
 
-# Install dependencies
-RUN npm install
-RUN npm install cors
-RUN npm install dotenv
-
-# Copy the rest of the application code
-COPY . .
-
-# Copy index.html from the parent directory to the app directory
-COPY public/index.html /usr/src/app/
-#COPY public/style.css /usr/src/app
-COPY public/crud.js /usr/src/app
-COPY public/.env /usr/src/app
-
-# Expose the port the app runs on
-EXPOSE 3000
-
-# Command to run the application
-CMD ["npm", "start"]
