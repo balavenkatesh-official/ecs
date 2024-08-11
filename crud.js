@@ -1,4 +1,4 @@
-const apiUrl = 'http://54.90.90.90:3000/users';
+const apiUrl = 'http://backend-loadbalancer-10594187.us-east-1.elb.amazonaws.com/users';
 
 async function fetchUsers() {
     try {
