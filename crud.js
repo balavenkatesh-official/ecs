@@ -1,4 +1,6 @@
-const apiUrl = 'http://backend-loadbalancer-10594187.us-east-1.elb.amazonaws.com/users';
+const API_BASE = `http://${window.location.hostname}:3000`;
+const apiUrl = `${API_BASE}/users`;
+//const apiUrl = 'http://0.0.0.0:3000/users';
 
 async function fetchUsers() {
     try {
@@ -32,7 +34,16 @@ async function createUser() {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
 
+        if (!name || !email) {
+            alert('Name and Email are required');
+            return;
+        }
+
         await axios.post(apiUrl, { name, email });
+
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+
         fetchUsers();
     } catch (error) {
         console.error('Error creating user:', error);
@@ -60,5 +71,4 @@ async function deleteUser(id) {
     }
 }
 
-// Fetch users when the page loads
 document.addEventListener('DOMContentLoaded', fetchUsers);
